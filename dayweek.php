@@ -1,11 +1,11 @@
 <?php
-// ¡¦½ËÆüÂĞ±ş¡£
-//// ½ËÆü½èÍı¤Ï¡¢¤³¤Á¤é¤Î¥µ¥¤¥È¤Î¥½¡¼¥¹¤òÍøÍÑ¤·¤Æ¤¤¤Ş¤¹¡£
+// ãƒ»ç¥æ—¥å¯¾å¿œã€‚
+//// ç¥æ—¥å‡¦ç†ã¯ã€ã“ã¡ã‚‰ã®ã‚µã‚¤ãƒˆã®ã‚½ãƒ¼ã‚¹ã‚’åˆ©ç”¨ã—ã¦ã„ã¾ã™ã€‚
 //http://www.pahoo.org/e-soul/webtech/php02/php02-27-01.shtm
 //
 // 2020.1.23 Ver 1.1
-// 	¡¦2019Ç¯¡ÖÊ¿À®¢ªÎáÏÂ¡×¤Ë¤È¤â¤Ê¤¦ÊÑ¹¹¿ôÅÀ
-// 	¡¦Dayweek¹¹¿·¤ËÈ¼¤¦¥­¥ã¥Ã¥·¥å¤Îºî¤êÄ¾¤·¤ËÂĞ±ş
+// 	ãƒ»2019å¹´ã€Œå¹³æˆâ†’ä»¤å’Œã€ã«ã¨ã‚‚ãªã†å¤‰æ›´æ•°ç‚¹
+// 	ãƒ»Dayweekæ›´æ–°ã«ä¼´ã†ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ä½œã‚Šç›´ã—ã«å¯¾å¿œ
 
 
 define('PKWK_DAYWEEK_CASH_DIR', DATA_HOME.'dayweek/');
@@ -15,7 +15,7 @@ class Dayweek
 	public $count;
 	public $targetMonth;
 	public $current;
-	public $dwdate; // ver1.1, ¤³¤Î¥Õ¥¡¥¤¥ë¼«ÂÎ¤Îfiletime ÊİÂ¸¡£
+	public $dwdate; // ver1.1, ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«è‡ªä½“ã®filetime ä¿å­˜ã€‚
 
 	function Dayweek()
 	{
@@ -34,16 +34,16 @@ class Dayweek
 	function getCal($year,$month)
 	{
 		//tomoseDBG("getCal");
-		// ¤¹¤Ç¤ËÍ×µá¤µ¤ì¤¿¥«¥ì¥ó¥À¡¼¤¬¤Ç¤­¤Æ¤¤¤ë¤Ê¤é¡¢¤½¤ì¤òÌá¤·¤Æ½ªÎ»¡£
+		// ã™ã§ã«è¦æ±‚ã•ã‚ŒãŸã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ãŒã§ãã¦ã„ã‚‹ãªã‚‰ã€ãã‚Œã‚’æˆ»ã—ã¦çµ‚äº†ã€‚
 		if( $this->targetMonth == $year.$month) return $current;
 
-		// ¥­¥ã¥Ã¥·¥å¤¬¤¢¤ì¤Ğ¡¢¤½¤ì¤òÆÉ¤ß¤À¤·¤ÆÌá¤¹¡£
+		// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒã‚ã‚Œã°ã€ãã‚Œã‚’èª­ã¿ã ã—ã¦æˆ»ã™ã€‚
 		$this->current = $this->getCash($year,$month);
 		if(! $this->current=="") {
 			$this->targetMonth = $year.$month;
 			return $this->current;
 		}
-		// ¥­¥ã¥Ã¥·¥å¤â¤Ê¤Ë¤â¤Ê¤¤¤Î¤Ç¡¢¥«¥ì¥ó¥À¡¼ºîÀ®
+		// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚‚ãªã«ã‚‚ãªã„ã®ã§ã€ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ä½œæˆ
 		$this->current = $this->createCal($year,$month);
 		return $this->current;
 
@@ -52,9 +52,9 @@ class Dayweek
 	function getCash($year,$month)
 	{
 		$target = PKWK_DAYWEEK_CASH_DIR.$year.$month.".txt";
-		if( ! file_exists($target)) return ""; // ¥­¥ã¥Ã¥·¥å¤¬¤Ê¤¤¤Î¤ÇÂ¨Ìá¤·¡£
+		if( ! file_exists($target)) return ""; // ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒãªã„ã®ã§å³æˆ»ã—ã€‚
 
-		// ver1.1 ¥­¥ã¥Ã¥·¥å¤¬¤¢¤Ã¤Æ¤â¸Å¤«¤Ã¤¿¤é¡¢¥­¥ã¥Ã¥·¥åºï½ü¤·¤Æ¡Ö¤Ê¤·¡×°·¤¤¤Ë¤¹¤ë¡£
+		// ver1.1 ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒã‚ã£ã¦ã‚‚å¤ã‹ã£ãŸã‚‰ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥å‰Šé™¤ã—ã¦ã€Œãªã—ã€æ‰±ã„ã«ã™ã‚‹ã€‚
 		if( filemtime($target)< $this->dwdate ){
 			unlink($target);
 			return "";
@@ -139,35 +139,42 @@ class Dayweek
 
 
 function getFixedHoliday($year, $month, $day, $lang) {
-//¸ÇÄê½ËÆü
+//å›ºå®šç¥æ—¥
 static $fixed_holiday = array(
-//    ·î  Æü  ³«»ÏÇ¯ ½ªÎ»Ç¯  Ì¾¾Î
-array( 1,  1, 1949, 9999, '¸µÆü',         "New Year's Day"),
-array( 1, 15, 1949, 1999, 'À®¿Í¤ÎÆü',     'Coming of Age Day'),
-array( 2, 11, 1967, 9999, '·ú¹ñµ­Ç°¤ÎÆü', 'National Foundation Day'),
-array( 2, 23, 2020, 1989, 'Å·¹ÄÃÂÀ¸Æü',   "The Emperor's Birthday"),
-array( 4, 29, 1949, 1989, 'Å·¹ÄÃÂÀ¸Æü',   "The Emperor's Birthday"),
-array( 4, 29, 1990, 2006, '¤ß¤É¤ê¤ÎÆü',   'Greenery Day'),
-array( 4, 29, 2007, 9999, '¾¼ÏÂ¤ÎÆü',     'Showa Day'),
-array( 5,  3, 1949, 9999, '·ûË¡µ­Ç°Æü',   'Constitution Memorial Day'),
-array( 5,  4, 1988, 2006, '¹ñÌ±¤ÎµÙÆü',   'Holiday for a Nation'),
-array( 5,  4, 2007, 9999, '¤ß¤É¤ê¤ÎÆü',   'Greenery Day'),
-array( 5,  5, 1949, 9999, '¤³¤É¤â¤ÎÆü',   "Children's Day"),
-array( 7, 20, 1996, 2002, '³¤¤ÎÆü',       'Marine Day'),
-array( 8, 11, 2016, 9999, '»³¤ÎÆü',       'Mountain Day'),
-array( 9, 15, 1966, 2002, '·ÉÏ·¤ÎÆü',     'Respect for the Aged Day'),
-array(10, 10, 1966, 1999, 'ÂÎ°é¤ÎÆü',     'Health and Sports Day'),
-array(11,  3, 1948, 9999, 'Ê¸²½¤ÎÆü',     'National Culture Day'),
-array(11, 23, 1948, 9999, '¶ĞÏ«´¶¼Õ¤ÎÆü', 'Labbor Thanksgiving Day'),
-array(12, 23, 1989, 2018, 'Å·¹ÄÃÂÀ¸Æü',   "The Emperor's Birthday"),
-//°Ê²¼¡¢1Ç¯¤À¤±¤Î½ËÆü
-array( 4, 10, 1959, 1959, '¹ÄÂÀ»ÒÌÀ¿Î¿Æ²¦¤Î·ëº§¤Îµ·', "The Rite of Wedding of HIH Crown Prince Akihito"),
-array( 2, 24, 1989, 1989, '¾¼ÏÂÅ·¹Ä¤ÎÂçÁÓ¤ÎÎé', "The Funeral Ceremony of Emperor Showa."),
-array(11, 12, 1990, 1990, 'Â¨°ÌÎéÀµÅÂ¤Îµ·', "The Ceremony of the Enthronement
+//    æœˆ  æ—¥  é–‹å§‹å¹´ çµ‚äº†å¹´  åç§°
+array( 1,  1, 1949, 9999, 'å…ƒæ—¥',         "New Year's Day"),
+array( 1, 15, 1949, 1999, 'æˆäººã®æ—¥',     'Coming of Age Day'),
+array( 2, 11, 1967, 9999, 'å»ºå›½è¨˜å¿µã®æ—¥', 'National Foundation Day'),
+array( 2, 23, 2020, 1989, 'å¤©çš‡èª•ç”Ÿæ—¥',   "The Emperor's Birthday"),
+array( 4, 29, 1949, 1989, 'å¤©çš‡èª•ç”Ÿæ—¥',   "The Emperor's Birthday"),
+array( 4, 29, 1990, 2006, 'ã¿ã©ã‚Šã®æ—¥',   'Greenery Day'),
+array( 4, 29, 2007, 9999, 'æ˜­å’Œã®æ—¥',     'Showa Day'),
+array( 5,  3, 1949, 9999, 'æ†²æ³•è¨˜å¿µæ—¥',   'Constitution Memorial Day'),
+array( 5,  4, 1988, 2006, 'å›½æ°‘ã®ä¼‘æ—¥',   'Holiday for a Nation'),
+array( 5,  4, 2007, 9999, 'ã¿ã©ã‚Šã®æ—¥',   'Greenery Day'),
+array( 5,  5, 1949, 9999, 'ã“ã©ã‚‚ã®æ—¥',   "Children's Day"),
+array( 7, 20, 1996, 2002, 'æµ·ã®æ—¥',       'Marine Day'),
+array( 7, 22, 2021, 2021, 'æµ·ã®æ—¥',       'Marine Day'),
+array( 7, 23, 2020, 2020, 'æµ·ã®æ—¥',       'Marine Day'),
+array( 7, 23, 2021, 2021, 'ã‚¹ãƒãƒ¼ãƒ„ã®æ—¥', 'Health Sports Day'),
+array( 7, 24, 2020, 2020, 'ã‚¹ãƒãƒ¼ãƒ„ã®æ—¥', 'Health Sports Day'),
+array( 8,  8, 2021, 2021, 'å±±ã®æ—¥',       'Mountain Day'),
+array( 8, 11, 2016, 2019, 'å±±ã®æ—¥',       'Mountain Day'),
+array( 8, 10, 2020, 2020, 'å±±ã®æ—¥',       'Mountain Day'),
+array( 8, 11, 2022, 9999, 'å±±ã®æ—¥',       'Mountain Day'),
+array( 9, 15, 1966, 2002, 'æ•¬è€ã®æ—¥',     'Respect for the Aged Day'),
+array(10, 10, 1966, 1999, 'ä½“è‚²ã®æ—¥',     'Health and Sports Day'),
+array(11,  3, 1948, 9999, 'æ–‡åŒ–ã®æ—¥',     'National Culture Day'),
+array(11, 23, 1948, 9999, 'å‹¤åŠ´æ„Ÿè¬ã®æ—¥', 'Labbor Thanksgiving Day'),
+array(12, 23, 1989, 2018, 'å¤©çš‡èª•ç”Ÿæ—¥',   "The Emperor's Birthday"),
+//ä»¥ä¸‹ã€1å¹´ã ã‘ã®ç¥æ—¥
+array( 4, 10, 1959, 1959, 'çš‡å¤ªå­æ˜ä»è¦ªç‹ã®çµå©šã®å„€', "The Rite of Wedding of HIH Crown Prince Akihito"),
+array( 2, 24, 1989, 1989, 'æ˜­å’Œå¤©çš‡ã®å¤§å–ªã®ç¤¼', "The Funeral Ceremony of Emperor Showa."),
+array(11, 12, 1990, 1990, 'å³ä½ç¤¼æ­£æ®¿ã®å„€', "The Ceremony of the Enthronement
       of His Majesty the Emperor (at the Seiden)"),
-array( 6,  9, 1993, 1993, '¹ÄÂÀ»ÒÆÁ¿Î¿Æ²¦¤Î·ëº§¤Îµ· ', "The Rite of Wedding of HIH Crown Prince Naruhito"),
-array( 5,  1, 2019, 2019, 'Å·¹Ä¤ÎÂ¨°Ì¤ÎÆü', 'Day of cadence'),
-array(10, 22, 2019, 2019, 'Â¨°ÌÎéÀµÅÂ¤Îµ·', 'The Ceremony of the Enthronement of His Majesty the Emperor (at the Seiden)'),
+array( 6,  9, 1993, 1993, 'çš‡å¤ªå­å¾³ä»è¦ªç‹ã®çµå©šã®å„€ ', "The Rite of Wedding of HIH Crown Prince Naruhito"),
+array( 5,  1, 2019, 2019, 'å¤©çš‡ã®å³ä½ã®æ—¥', 'Day of cadence'),
+array(10, 22, 2019, 2019, 'å³ä½ç¤¼æ­£æ®¿ã®å„€', 'The Ceremony of the Enthronement of His Majesty the Emperor (at the Seiden)'),
 );
 
 	$name = FALSE;
@@ -184,58 +191,58 @@ array(10, 22, 2019, 2019, 'Â¨°ÌÎéÀµÅÂ¤Îµ·', 'The Ceremony of the Enthronement of
 }
 
 /**
- * ¤¢¤ëÇ¯¤Î½ÕÊ¬¤ÎÆü¤òµá¤á¤ë
- * @param	int $year À¾ÎñÇ¯
- * @return	int Æü¡Ê3·î¤Î¡Ë
+ * ã‚ã‚‹å¹´ã®æ˜¥åˆ†ã®æ—¥ã‚’æ±‚ã‚ã‚‹
+ * @param	int $year è¥¿æš¦å¹´
+ * @return	int æ—¥ï¼ˆ3æœˆã®ï¼‰
 */
 function getVernalEquinox($year) {
 	return floor(20.8431 + 0.242194 * ($year - 1980) - floor(($year - 1980) / 4));
 }
 
 /**
- * ¤¢¤ëÇ¯¤Î½©Ê¬¤ÎÆü¤òµá¤á¤ë
- * @param	int $year À¾ÎñÇ¯
- * @return	int Æü¡Ê9·î¤Î¡Ë
+ * ã‚ã‚‹å¹´ã®ç§‹åˆ†ã®æ—¥ã‚’æ±‚ã‚ã‚‹
+ * @param	int $year è¥¿æš¦å¹´
+ * @return	int æ—¥ï¼ˆ9æœˆã®ï¼‰
 */
 function getAutumnalEquinox($year) {
 	return floor(23.2488 + 0.242194 * ($year - 1980) - floor(($year - 1980) / 4));
 }
 
 /**
- * °ÜÆ°½ËÆü¡Ê½ÕÊ¬¡¿½©Ê¬¤ÎÆü¡Ë¤Ç¤¢¤ì¤Ğ¡¢¤½¤ÎÌ¾¾Î¤ò¼èÆÀ¤¹¤ë
- * @param	int $year  À¾ÎñÇ¯
- * @param	int $month ·î
- * @param	int $day   Æü
- * @param	string lang jp=ÆüËÜ¸ìÌ¾¾Î¡¿en=±Ñ¸ìÌ¾¾Î
- * @return	string °ÜÆ°½ËÆü¤ÎÌ¾¾Î¡¿FALSE=½ËÆü¤Ç¤Ï¤Ê¤¤
+ * ç§»å‹•ç¥æ—¥ï¼ˆæ˜¥åˆ†ï¼ç§‹åˆ†ã®æ—¥ï¼‰ã§ã‚ã‚Œã°ã€ãã®åç§°ã‚’å–å¾—ã™ã‚‹
+ * @param	int $year  è¥¿æš¦å¹´
+ * @param	int $month æœˆ
+ * @param	int $day   æ—¥
+ * @param	string lang jp=æ—¥æœ¬èªåç§°ï¼en=è‹±èªåç§°
+ * @return	string ç§»å‹•ç¥æ—¥ã®åç§°ï¼FALSE=ç¥æ—¥ã§ã¯ãªã„
 */
 function getMovableHoliday1($year, $month, $day, $lang) {
 	$name = FALSE;
 
-	//½ÕÊ¬¤ÎÆü
+	//æ˜¥åˆ†ã®æ—¥
 	//tomoseDBG('gmh_1');
 	$dd = $this->getVernalEquinox($year);
 	if ($year >=1949 && $day == $dd && $month == 3) {
-		$name = preg_match("/JP/i", $lang) == 1 ? '½ÕÊ¬¤ÎÆü' : 'Vernal Equinox Day';
+		$name = preg_match("/JP/i", $lang) == 1 ? 'æ˜¥åˆ†ã®æ—¥' : 'Vernal Equinox Day';
 	}
-	//½©Ê¬¤ÎÆü
+	//ç§‹åˆ†ã®æ—¥
 	$dd = $this->getAutumnalEquinox($year);
 
 	if ($year >=1948 && $day == $dd && $month == 9) {
 
-		$name = preg_match("/JP/i", $lang) == 1 ? '½©Ê¬¤ÎÆü' : 'Autumnal Equinox Day';
+		$name = preg_match("/JP/i", $lang) == 1 ? 'ç§‹åˆ†ã®æ—¥' : 'Autumnal Equinox Day';
 	}
 
 	return $name;
 }
 
 /**
- * ¤¢¤ë·î¤ÎÂèNÍËÆü¤òµá¤á¤ë
- * @param	int $year À¾ÎñÇ¯
- * @param	int $month ·î
- * @param	int $week  ÍËÆüÈÖ¹æ¡¨0 (ÆüÍË)¡Á 6 (ÅÚÍË)
- * @param	int $n     ÂèNÍËÆü
- * @return	int $day Æü
+ * ã‚ã‚‹æœˆã®ç¬¬Næ›œæ—¥ã‚’æ±‚ã‚ã‚‹
+ * @param	int $year è¥¿æš¦å¹´
+ * @param	int $month æœˆ
+ * @param	int $week  æ›œæ—¥ç•ªå·ï¼›0 (æ—¥æ›œ)ï½ 6 (åœŸæ›œ)
+ * @param	int $n     ç¬¬Næ›œæ—¥
+ * @return	int $day æ—¥
 */
 function getWeeksOfMonth($year, $month, $week, $n) {
 	if ($n < 1)		return FALSE;
@@ -247,27 +254,27 @@ function getWeeksOfMonth($year, $month, $week, $n) {
 	$jdn = $jd2 + 7 * ($n - 1);
 	list($yy, $mm, $dd) = $this->JD2Gregorian($jdn);
 
-	if ($mm != $month)	return FALSE;	//·î¤Î¥ª¡¼¥Ğ¡¼¥Õ¥í¡¼
+	if ($mm != $month)	return FALSE;	//æœˆã®ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼
 
 	return $dd;
 }
 
 /**
- * °ÜÆ°½ËÆü¡Ê¥Ï¥Ã¥Ô¡¼¥Ş¥ó¥Ç¡¼¡Ë¤Ç¤¢¤ì¤Ğ¡¢¤½¤ÎÌ¾¾Î¤ò¼èÆÀ¤¹¤ë
- * @param	int $year  À¾ÎñÇ¯
- * @param	int $month ·î
- * @param	int $day   Æü
- * @param	string lang jp=ÆüËÜ¸ìÌ¾¾Î¡¿en=±Ñ¸ìÌ¾¾Î
- * @return	string °ÜÆ°½ËÆü¤ÎÌ¾¾Î¡¿FALSE=½ËÆü¤Ç¤Ï¤Ê¤¤
+ * ç§»å‹•ç¥æ—¥ï¼ˆãƒãƒƒãƒ”ãƒ¼ãƒãƒ³ãƒ‡ãƒ¼ï¼‰ã§ã‚ã‚Œã°ã€ãã®åç§°ã‚’å–å¾—ã™ã‚‹
+ * @param	int $year  è¥¿æš¦å¹´
+ * @param	int $month æœˆ
+ * @param	int $day   æ—¥
+ * @param	string lang jp=æ—¥æœ¬èªåç§°ï¼en=è‹±èªåç§°
+ * @return	string ç§»å‹•ç¥æ—¥ã®åç§°ï¼FALSE=ç¥æ—¥ã§ã¯ãªã„
 */
 function getMovableHoliday2($year, $month, $day, $lang) {
-//°ÜÆ°½ËÆü¡Ê¥Ï¥Ã¥Ô¡¼¥Ş¥ó¥Ç¡¼Ë¡¡Ë
+//ç§»å‹•ç¥æ—¥ï¼ˆãƒãƒƒãƒ”ãƒ¼ãƒãƒ³ãƒ‡ãƒ¼æ³•ï¼‰
 static $movable_holiday = array(
-//    ·î  ÍËÆüÈÖ¹æ ÂèNÍËÆü ³«»ÏÇ¯  ½ªÎ»Ç¯  Ì¾¾Î
-array( 1, 1, 2, 2000, 9999, 'À®¿Í¤ÎÆü', 'Coming of Age Day'),
-array( 7, 1, 3, 2003, 9999, '³¤¤ÎÆü',   'Marine Day'),
-array( 9, 1, 3, 2003, 9999, '·ÉÏ·¤ÎÆü', 'Respect for the Aged Day'),
-array(10, 1, 2, 2000, 9999, 'ÂÎ°é¤ÎÆü', 'Health and Sports Day')
+//    æœˆ  æ›œæ—¥ç•ªå· ç¬¬Næ›œæ—¥ é–‹å§‹å¹´  çµ‚äº†å¹´  åç§°
+array( 1, 1, 2, 2000, 9999, 'æˆäººã®æ—¥', 'Coming of Age Day'),
+array( 7, 1, 3, 2003, 9999, 'æµ·ã®æ—¥',   'Marine Day'),
+array( 9, 1, 3, 2003, 9999, 'æ•¬è€ã®æ—¥', 'Respect for the Aged Day'),
+array(10, 1, 2, 2000, 9999, 'ä½“è‚²ã®æ—¥', 'Health and Sports Day')
 );
 
 	$name = FALSE;
@@ -283,10 +290,10 @@ array(10, 1, 2, 2000, 9999, 'ÂÎ°é¤ÎÆü', 'Health and Sports Day')
 }
 
 /**
- * ¸ÇÄê½ËÆü¤Ş¤¿¤Ï°ÜÆ°½ËÆü¤«¤É¤¦¤«Ä´¤Ù¤ë
- * @param	int $year  À¾ÎñÇ¯
- * @param	int $month ·î
- * @param	int $day   Æü
+ * å›ºå®šç¥æ—¥ã¾ãŸã¯ç§»å‹•ç¥æ—¥ã‹ã©ã†ã‹èª¿ã¹ã‚‹
+ * @param	int $year  è¥¿æš¦å¹´
+ * @param	int $month æœˆ
+ * @param	int $day   æ—¥
  * @return	bool TRUE/FALSE
 */
 function isFixedMovableHoliday($year, $month, $day) {
@@ -301,57 +308,57 @@ function isFixedMovableHoliday($year, $month, $day) {
 }
 
 /**
- * ¿¶ÂØµÙÆü¤«¤É¤¦¤«Ä´¤Ù¤ë
- * @param	int $year  À¾ÎñÇ¯
- * @param	int $month ·î
- * @param	int $day   Æü
+ * æŒ¯æ›¿ä¼‘æ—¥ã‹ã©ã†ã‹èª¿ã¹ã‚‹
+ * @param	int $year  è¥¿æš¦å¹´
+ * @param	int $month æœˆ
+ * @param	int $day   æ—¥
  * @return	bool TRUE/FALSE
 */
 function isTransferHoliday($year, $month, $day) {
 
 	$jd = $this->Gregorian2JD($year, $month, $day);
 	$j0 = $this->Gregorian2JD(1973, 4, 12);
-	if ($jd < $j0)	return FALSE;		//Í­¸ú¤Ê¤Î¤Ï1973Ç¯4·î12Æü°Ê¹ß
+	if ($jd < $j0)	return FALSE;		//æœ‰åŠ¹ãªã®ã¯1973å¹´4æœˆ12æ—¥ä»¥é™
 
-	//ÅöÆü¤¬½ËÆü¤Ê¤é FALSE
+	//å½“æ—¥ãŒç¥æ—¥ãªã‚‰ FALSE
 		//tomoseDBG('itH_0');
 	if ($this->isFixedMovableHoliday($year, $month, $day))		return FALSE;
 
-	$n = ($year <= 2006) ? 1 : 7;	//²şÀµË¡¤Ê¤éºÇÂç7Æü´ÖÁÌ¤ë
-	$jd--;							//1ÆüÁ°
-	for ($i = 0; $i < $n; $i++) {		//Ìµ¸Â¥ë¡¼¥×¤Ë´Ù¤é¤Ê¤¤¤è¤¦¤Ë
+	$n = ($year <= 2006) ? 1 : 7;	//æ”¹æ­£æ³•ãªã‚‰æœ€å¤§7æ—¥é–“é¡ã‚‹
+	$jd--;							//1æ—¥å‰
+	for ($i = 0; $i < $n; $i++) {		//ç„¡é™ãƒ«ãƒ¼ãƒ—ã«é™¥ã‚‰ãªã„ã‚ˆã†ã«
 		//tomoseDBG('itH_1');
 		list($yy, $mm, $dd) = $this->JD2Gregorian($jd);
-		//½ËÆü¤«¤ÄÆüÍËÆü¤Ê¤é¿¶ÂØµÙÆü
+		//ç¥æ—¥ã‹ã¤æ—¥æ›œæ—¥ãªã‚‰æŒ¯æ›¿ä¼‘æ—¥
 		//tomoseDBG('itH_2');
 		if ($this->isFixedMovableHoliday($yy, $mm, $dd)
 			&& ($this->getWeekNumber($yy, $mm, $dd) == 0))		return TRUE;
-		//½ËÆü¤Ç¤Ê¤±¤ì¤ĞÂÇ¤ÁÀÚ¤ê
+		//ç¥æ—¥ã§ãªã‘ã‚Œã°æ‰“ã¡åˆ‡ã‚Š
 		//tomoseDBG('itH_4');
 		if (! $this->isFixedMovableHoliday($yy, $mm, $dd))		break;
-		$jd--;	//1ÆüÁ°
+		$jd--;	//1æ—¥å‰
 	}
 		//tomoseDBG('itH_4');
 	return FALSE;
 }
 
 /**
- * ¹ñÌ±¤ÎµÙÆü¤«¤É¤¦¤«Ä´¤Ù¤ë
- * @param	int $year  À¾ÎñÇ¯
- * @param	int $month ·î
- * @param	int $day   Æü
+ * å›½æ°‘ã®ä¼‘æ—¥ã‹ã©ã†ã‹èª¿ã¹ã‚‹
+ * @param	int $year  è¥¿æš¦å¹´
+ * @param	int $month æœˆ
+ * @param	int $day   æ—¥
  * @return	bool TRUE/FALSE
 */
 function isNationalHoliday($year, $month, $day) {
 	//tomoseDBG('inh_1');
-	if ($year < 2003)	return FALSE;	//Í­¸ú¤Ê¤Î¤Ï2003Ç¯°Ê¹ß
-	$j0 = $this->Gregorian2JD($year, $month, $day) - 1;	//Á°Æü
+	if ($year < 2003)	return FALSE;	//æœ‰åŠ¹ãªã®ã¯2003å¹´ä»¥é™
+	$j0 = $this->Gregorian2JD($year, $month, $day) - 1;	//å‰æ—¥
 	list($yy0, $mm0, $dd0) = $this->JD2Gregorian($j0);
-	$j1 = $this->Gregorian2JD($year, $month, $day) + 1;	//ÍâÆü
+	$j1 = $this->Gregorian2JD($year, $month, $day) + 1;	//ç¿Œæ—¥
 	list($yy1, $mm1, $dd1) = $this->JD2Gregorian($j1);
 	//tomoseDBG('inh_2');
 
-	//Á°Æü¤ÈÍâÆü¤¬¸ÇÄê½ËÆü¤Ş¤¿¤Ï°ÜÆ°½ËÆü¤Ê¤é¹ñÌ±¤ÎµÙÆü
+	//å‰æ—¥ã¨ç¿Œæ—¥ãŒå›ºå®šç¥æ—¥ã¾ãŸã¯ç§»å‹•ç¥æ—¥ãªã‚‰å›½æ°‘ã®ä¼‘æ—¥
 	if ($this->isFixedMovableHoliday($yy0, $mm0, $dd0)
 		&& $this->isFixedMovableHoliday($yy1, $mm1, $dd1))	return TRUE;
 	//tomoseDBG('inh_3');
@@ -359,45 +366,45 @@ function isNationalHoliday($year, $month, $day) {
 }
 
 /**
- * ½ËÆü¤Ç¤¢¤ì¤Ğ¡¢¤½¤ÎÌ¾¾Î¤ò¼èÆÀ¤¹¤ë
- * @param	int $year  À¾ÎñÇ¯
- * @param	int $month ·î
- * @param	int $day   Æü
- * @param	string lang jp=ÆüËÜ¸ìÌ¾¾Î¡¿en=±Ñ¸ìÌ¾¾Î
- * @return	string ½ËÆü¤ÎÌ¾¾Î¡¿FALSE=½ËÆü¤Ç¤Ï¤Ê¤¤
+ * ç¥æ—¥ã§ã‚ã‚Œã°ã€ãã®åç§°ã‚’å–å¾—ã™ã‚‹
+ * @param	int $year  è¥¿æš¦å¹´
+ * @param	int $month æœˆ
+ * @param	int $day   æ—¥
+ * @param	string lang jp=æ—¥æœ¬èªåç§°ï¼en=è‹±èªåç§°
+ * @return	string ç¥æ—¥ã®åç§°ï¼FALSE=ç¥æ—¥ã§ã¯ãªã„
 */
 function getHoliday($year, $month, $day, $lang) {
-	//¸ÇÄê½ËÆü
+	//å›ºå®šç¥æ—¥
 	//tomoseDBG('1');
 	$name = $this->getFixedHoliday($year, $month, $day, 'jp');
 	if ($name != FALSE)		return $name;
-	//°ÜÆ°½ËÆü¡Ê½ÕÊ¬¡¿½©Ê¬¤ÎÆü¡Ë
+	//ç§»å‹•ç¥æ—¥ï¼ˆæ˜¥åˆ†ï¼ç§‹åˆ†ã®æ—¥ï¼‰
 	//tomoseDBG('2');
 	$name = $this->getMovableHoliday1($year, $month, $day, 'jp');
 	if ($name != FALSE)		return $name;
-	//°ÜÆ°½ËÆü¡Ê¥Ï¥Ã¥Ô¡¼¥Ş¥ó¥Ç¡¼¡Ë
+	//ç§»å‹•ç¥æ—¥ï¼ˆãƒãƒƒãƒ”ãƒ¼ãƒãƒ³ãƒ‡ãƒ¼ï¼‰
 	//tomoseDBG('3');
 	$name = $this->getMovableHoliday2($year, $month, $day, 'jp');
 	if ($name != FALSE)		return $name;
-	//¿¶ÂØµÙÆü
+	//æŒ¯æ›¿ä¼‘æ—¥
 	//tomoseDBG('4');
 	if ($this->isTransferHoliday($year, $month, $day)) {
-		return preg_match("/JP/i", $lang) == 1 ? '¿¶ÂØµÙÆü' : 'holiday in lieu';
+		return preg_match("/JP/i", $lang) == 1 ? 'æŒ¯æ›¿ä¼‘æ—¥' : 'holiday in lieu';
 	}
-	//¹ñÌ±¤Î½ËÆü
+	//å›½æ°‘ã®ç¥æ—¥
 	//tomoseDBG('5');
 	if ($this->isNationalHoliday($year, $month, $day)) {
-		return preg_match("/JP/i", $lang) == 1 ? '¹ñÌ±¤ÎµÙÆü' : "Citizen's Holiday";
+		return preg_match("/JP/i", $lang) == 1 ? 'å›½æ°‘ã®ä¼‘æ—¥' : "Citizen's Holiday";
 	}
-	//½ËÆü¤Ç¤Ï¤Ê¤¤
+	//ç¥æ—¥ã§ã¯ãªã„
 	return FALSE;
 }
 
 /**
- * ½ËÆü¤«¤É¤¦¤«¤òÄ´¤Ù¤ë
- * @param	int $year  À¾ÎñÇ¯
- * @param	int $month ·î
- * @param	int $day   Æü
+ * ç¥æ—¥ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
+ * @param	int $year  è¥¿æš¦å¹´
+ * @param	int $month æœˆ
+ * @param	int $day   æ—¥
  * @return	bool TRUE/FALSE
 */
 function isHoliday($year, $month, $day) {
@@ -405,11 +412,11 @@ function isHoliday($year, $month, $day) {
 	return $this->getHoliday($year, $month, $day, 'jp') == FALSE ? FALSE : TRUE;
 }
 /**
- * ¥°¥ì¥´¥ê¥ªÎñ¢Í¥æ¥ê¥¦¥¹Æü¡¡ÊÑ´¹
- * @param	int $year  À¾ÎñÇ¯
- * @param	int $month ·î
- * @param	int $day   Æü
- * @return	double ¥æ¥ê¥¦¥¹Æü(JD)
+ * ã‚°ãƒ¬ã‚´ãƒªã‚ªæš¦â‡’ãƒ¦ãƒªã‚¦ã‚¹æ—¥ã€€å¤‰æ›
+ * @param	int $year  è¥¿æš¦å¹´
+ * @param	int $month æœˆ
+ * @param	int $day   æ—¥
+ * @return	double ãƒ¦ãƒªã‚¦ã‚¹æ—¥(JD)
 */
 function Gregorian2JD($year, $month, $day) {
 	if ($month <= 2) {
@@ -420,9 +427,9 @@ function Gregorian2JD($year, $month, $day) {
 }
 
 /**
- * ¥æ¥ê¥¦¥¹Æü¢Í¥°¥ì¥´¥ê¥ªÎñ¡¡ÊÑ´¹
- * @param	double $jd ¥æ¥ê¥¦¥¹Æü
- * @return	array($year, $month, $day)  À¾ÎñÇ¯·îÆü
+ * ãƒ¦ãƒªã‚¦ã‚¹æ—¥â‡’ã‚°ãƒ¬ã‚´ãƒªã‚ªæš¦ã€€å¤‰æ›
+ * @param	double $jd ãƒ¦ãƒªã‚¦ã‚¹æ—¥
+ * @return	array($year, $month, $day)  è¥¿æš¦å¹´æœˆæ—¥
 */
 function JD2Gregorian($jd) {
 	$jd += 0.5;
@@ -443,11 +450,11 @@ function JD2Gregorian($jd) {
 }
 
 /**
- * ÍËÆüÈÖ¹æ¤òµá¤á¤ë
- * @param	int $year  À¾ÎñÇ¯
- * @param	int $month ·î
- * @param	int $day   Æü
- * @return	int ÍËÆüÈÖ¹æ¡Ê0:ÆüÍËÆü, 1:·îÍËÆü...6:ÅÚÍËÆü¡Ë
+ * æ›œæ—¥ç•ªå·ã‚’æ±‚ã‚ã‚‹
+ * @param	int $year  è¥¿æš¦å¹´
+ * @param	int $month æœˆ
+ * @param	int $day   æ—¥
+ * @return	int æ›œæ—¥ç•ªå·ï¼ˆ0:æ—¥æ›œæ—¥, 1:æœˆæ›œæ—¥...6:åœŸæ›œæ—¥ï¼‰
 */
 function getWeekNumber($year, $month, $day) {
 	$jd = $this->Gregorian2JD($year, $month, $day);
