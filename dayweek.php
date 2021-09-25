@@ -3,10 +3,9 @@
 //// 祝日処理は、こちらのサイトのソースを利用しています。
 //http://www.pahoo.org/e-soul/webtech/php02/php02-27-01.shtm
 //
-// 2020.1.23 Ver 1.1
-// 	・2019年「平成→令和」にともなう変更数点
-// 	・Dayweek更新に伴うキャッシュの作り直しに対応
-
+// 2021.9.25 Ver 1.2
+// 	・スポーツの日など五輪周りでの変則休日に対応
+//
 
 define('PKWK_DAYWEEK_CASH_DIR', DATA_HOME.'dayweek/');
 
